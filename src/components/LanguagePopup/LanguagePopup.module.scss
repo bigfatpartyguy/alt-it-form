@@ -1,0 +1,11 @@
+@import '../../assets/scss/variables/colors';
+
+.popup-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: map-get($colors, 'basic');
+}

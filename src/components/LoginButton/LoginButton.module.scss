@@ -1,0 +1,20 @@
+@import '../../assets/scss/variables/colors';
+
+.login-btn {
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 600;
+  color: map-get($colors, 'primary');
+  cursor: pointer;
+
+  .login-btn__icon {
+    margin-left: 6px;
+
+    path {
+      stroke: map-get($colors, 'primary');
+    }
+  }
+}
