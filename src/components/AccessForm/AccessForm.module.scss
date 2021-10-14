@@ -1,0 +1,15 @@
+@import '../../assets/scss/variables/colors';
+
+.form {
+  width: 730px;
+  background-color: map-get($colors, 'primary');
+  &-title {
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    font-size: 22px;
+    color: map-get($colors, 'white-color');
+    background-color: map-get($colors, 'primary-80');
+    border-radius: 10px 10px 0 0;
+  }
+}

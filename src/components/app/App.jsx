@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../Header';
+import AccessForm from '../AccessForm';
 import bgUrl from '../../assets/images/bg.png';
 import styles from './App.module.scss';
 
@@ -17,6 +18,7 @@ const App = () => {
             Доступ к платформе возможен исключительно для представителей,
             юридических лиц или индивидуальных предпринимателей
           </p>
+          <AccessForm />
         </section>
       </main>
     </div>
