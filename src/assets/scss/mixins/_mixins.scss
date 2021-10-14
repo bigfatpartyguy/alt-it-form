@@ -1,0 +1,11 @@
+@mixin btn-text-icon($color) {
+  padding: 0;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  color: map-get($colors, $color);
+}

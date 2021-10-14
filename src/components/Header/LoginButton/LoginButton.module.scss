@@ -1,0 +1,14 @@
+@import '../../../assets/scss/variables/colors';
+@import '../../../assets/scss/mixins/mixins';
+
+.login-btn {
+  @include btn-text-icon('primary');
+
+  .login-btn__icon {
+    margin-left: 6px;
+
+    path {
+      stroke: map-get($colors, 'primary');
+    }
+  }
+}

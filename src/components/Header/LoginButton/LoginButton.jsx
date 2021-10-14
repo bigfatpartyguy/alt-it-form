@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReactComponent as LoginIcon} from '../../assets/images/login.svg';
+import {ReactComponent as LoginIcon} from '../../../assets/images/login.svg';
 import styles from './LoginButton.module.scss';
 
 const LoginButton = () => {

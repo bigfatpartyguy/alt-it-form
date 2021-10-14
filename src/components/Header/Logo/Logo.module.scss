@@ -1,0 +1,31 @@
+@import '../../../assets/scss/variables/colors';
+
+.logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &__icon {
+    height: 35px;
+    width: 196px;
+  }
+
+  &__text {
+    text-transform: uppercase;
+    margin-left: 30px;
+    position: relative;
+    font-size: 9px;
+    font-weight: 500;
+    color: map-get($colors, 'body');
+    letter-spacing: 0.05em;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background-color: map-get($colors, 'muted-light');
+      top: 0;
+      left: -15px;
+    }
+  }
+}

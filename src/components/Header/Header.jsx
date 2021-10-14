@@ -1,19 +1,19 @@
 import React from 'react';
-import {ReactComponent as Logo} from '../../assets/images/logo.svg';
-import LoginButton from '../LoginButton';
-import LanguagePopup from '../LanguagePopup';
+import Logo from './Logo/';
+import LoginButton from './LoginButton';
+import LanguagePopup from './LanguagePopup';
+import MenuButton from './MenuButton';
 import styles from './Header.module.scss';
 
 const Header = () => {
   return (
     <header className={styles['header']}>
       <div className={styles['header__content']}>
-        <div className={styles['header__logo']}>
-          <Logo />
-        </div>
+        <Logo />
         <div className={styles['header__controls']}>
           <LoginButton />
           <LanguagePopup />
+          <MenuButton />
         </div>
       </div>
     </header>

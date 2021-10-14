@@ -1,8 +1,11 @@
+@import '../../assets/scss/variables/colors';
+
 .header {
   height: 70px;
   width: 100%;
   display: flex;
   justify-content: center;
+  border-bottom: 1px solid map-get($colors, 'border');
 
   &__content {
     max-width: 1360px;
@@ -14,5 +17,10 @@
 
   &__controls {
     display: flex;
+    align-items: center;
+
+    > *:not(:last-child) {
+      margin-right: 20px;
+    }
   }
 }

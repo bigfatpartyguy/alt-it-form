@@ -1,0 +1,10 @@
+@import '../../../assets/scss/variables/colors';
+@import '../../../assets/scss/mixins/mixins';
+
+.popup-btn {
+  @include btn-text-icon('basic');
+
+  &__text {
+    margin: 0 4px;
+  }
+}
