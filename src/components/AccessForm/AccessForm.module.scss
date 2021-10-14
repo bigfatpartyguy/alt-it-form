@@ -2,7 +2,9 @@
 
 .form {
   width: 730px;
-  background-color: map-get($colors, 'primary');
+  background-color: map-get($colors, 'white-color');
+  border-radius: 10px;
+  box-shadow: 20px 20px 60px hsla(0, 0%, 0%, 0.15);
   &-title {
     height: 70px;
     line-height: 70px;
@@ -11,5 +13,6 @@
     color: map-get($colors, 'white-color');
     background-color: map-get($colors, 'primary-80');
     border-radius: 10px 10px 0 0;
+    margin-bottom: 39px;
   }
 }

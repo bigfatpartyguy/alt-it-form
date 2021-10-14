@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from '../Header';
 import AccessForm from '../AccessForm';
+import FormSection from '../AccessForm/FormSection';
+import TextInput from '../AccessForm/TextInput';
 import bgUrl from '../../assets/images/bg.png';
 import styles from './App.module.scss';
 
@@ -18,7 +20,13 @@ const App = () => {
             Доступ к платформе возможен исключительно для представителей,
             юридических лиц или индивидуальных предпринимателей
           </p>
-          <AccessForm />
+          <AccessForm>
+            <FormSection title="Представитель юридического лица">
+              <TextInput id="name" type="text">
+                Имя&#42;
+              </TextInput>
+            </FormSection>
+          </AccessForm>
         </section>
       </main>
     </div>

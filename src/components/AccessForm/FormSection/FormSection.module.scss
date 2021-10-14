@@ -1,0 +1,11 @@
+.form-section {
+  border: none;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-top: 28px;
+  &__title {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
