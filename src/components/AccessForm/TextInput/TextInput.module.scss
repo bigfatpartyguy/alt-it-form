@@ -1,7 +1,7 @@
 @import '../../../assets/scss/variables/colors';
 
 .input {
-  width: 350px;
+  width: 310px;
   height: 56px;
   position: relative;
 
@@ -11,6 +11,7 @@
     top: 28px;
     transform: translateY(-50%);
     color: map-get($colors, 'gray-color');
+    transition: all 300ms ease-out;
   }
 
   &__input-field {
@@ -26,11 +27,26 @@
     font-size: inherit;
     color: inherit;
 
+    &:focus {
+      border-color: map-get($colors, 'primary-60');
+    }
+
     &:focus + .input__label,
     &:valid + .input__label {
       top: 11px;
       font-size: 10px;
       color: map-get($colors, 'muted');
+    }
+  }
+
+  &.input_invalid {
+    .input__input-field {
+      border-color: map-get($colors, 'danger-60');
+
+      & + .input__label {
+        top: 11px;
+        font-size: 10px;
+      }
     }
   }
 }

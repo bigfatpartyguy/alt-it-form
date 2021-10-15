@@ -5,7 +5,7 @@ const AccessForm = ({children}) => {
   return (
     <form className={styles['form']}>
       <p className={styles['form-title']}>Заполните контактные данные</p>
-      {children}
+      <div className={styles['form__form-elements']}>{children}</div>
     </form>
   );
 };

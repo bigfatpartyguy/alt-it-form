@@ -5,7 +5,7 @@ const FormSection = ({title, children}) => {
   return (
     <section className={styles['form-section']}>
       <p className={styles['form-section__title']}>{title}</p>
-      {children}
+      <div className={styles['form-section__form-elements']}>{children}</div>
     </section>
   );
 };
