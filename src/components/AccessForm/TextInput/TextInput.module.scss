@@ -51,9 +51,10 @@
     .input__input-field {
       border-color: map-get($colors, 'danger-60');
 
-      & + .input__label {
+      &:not([value='']) + .input__label {
         top: 11px;
         font-size: 10px;
+        color: map-get($colors, 'muted');
       }
     }
   }
