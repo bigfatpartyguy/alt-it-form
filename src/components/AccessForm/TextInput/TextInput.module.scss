@@ -40,6 +40,15 @@
     }
   }
 
+  &__validation-icon {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
   &__error-message {
     font-size: 10px;
     color: map-get($colors, 'danger');

@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import classNames from 'classnames/bind';
+import {ReactComponent as ValidIcon} from '../../../assets/images/valid-icon.svg';
+import {ReactComponent as InvalidIcon} from '../../../assets/images/invalid-icon.svg';
 import styles from './TextInput.module.scss';
 
 const cx = classNames.bind(styles);
 
 const TextInput = ({id, type, value, onChange, onBlur, errorMsg, children}) => {
-  console.log(errorMsg);
+  const [touched, setTouched] = useState(false);
+
+  const handleBlur = evt => {
+    setTouched(true);
+    onBlur(evt);
+  };
+
   const inputClass = cx({input: true, input_invalid: errorMsg});
   return (
     <div className={inputClass}>
@@ -16,7 +24,7 @@ const TextInput = ({id, type, value, onChange, onBlur, errorMsg, children}) => {
         type={type}
         value={value}
         onChange={onChange}
-        onBlur={onBlur}
+        onBlur={handleBlur}
         required
       />
       <label className={styles['input__label']} htmlFor={id}>
@@ -25,6 +33,9 @@ const TextInput = ({id, type, value, onChange, onBlur, errorMsg, children}) => {
       {errorMsg ? (
         <div className={styles['input__error-message']}>{errorMsg}</div>
       ) : null}
+      <div className={styles['input__validation-icon']}>
+        {errorMsg ? <InvalidIcon /> : touched ? <ValidIcon /> : null}
+      </div>
     </div>
   );
 };

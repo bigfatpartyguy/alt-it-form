@@ -10,10 +10,11 @@ const App = () => {
   const [disabled, setDisabled] = useState(true);
   const [values, handleChange, handleBlur, handleSubmit, errors] =
     useFormValidation(
-      {name: '', surname: '', position: '', email: ''},
+      {name: '', surname: '', position: '', corporate_email: ''},
       validateInputs,
       setDisabled
     );
+
   return (
     <div>
       <Header />
@@ -60,12 +61,12 @@ const App = () => {
                 Должность&#42;
               </TextInput>
               <TextInput
-                id="email"
+                id="corporate_email"
                 type="email"
-                value={values.email}
+                value={values.corporate_email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                errorMsg={errors.email || ''}
+                errorMsg={errors.corporate_email || ''}
               >
                 Ваш корпоративный email&#42;
               </TextInput>
