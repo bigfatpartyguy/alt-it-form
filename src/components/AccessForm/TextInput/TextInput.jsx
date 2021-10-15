@@ -22,6 +22,9 @@ const TextInput = ({id, type, value, onChange, onBlur, errorMsg, children}) => {
       <label className={styles['input__label']} htmlFor={id}>
         {children}
       </label>
+      {errorMsg ? (
+        <div className={styles['input__error-message']}>{errorMsg}</div>
+      ) : null}
     </div>
   );
 };
