@@ -1,5 +1,11 @@
 const validateInputs = values => {
   const errors = {};
+  if (!values.company_name) {
+    errors.company_name = 'Обязательное поле';
+  }
+  if (!values.user_category) {
+    errors.user_category = 'Обязательное поле';
+  }
   if (Object.prototype.hasOwnProperty.call(values, 'name') && !values.name) {
     errors.name = 'Обязательное поле';
   }

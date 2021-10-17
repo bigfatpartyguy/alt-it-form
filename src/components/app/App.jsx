@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import Header from '../Header';
 import AccessForm from '../AccessForm';
 import FormSection from '../AccessForm/FormSection';
@@ -8,16 +9,15 @@ import bgUrl from '../../assets/images/bg.png';
 import styles from './App.module.scss';
 import {useFormValidation, validateInputs} from '../../features/validation';
 
-//Hardcoded data for testing purposes
-import data from '../../data';
-
 const App = () => {
+  const [userCategory, setUserCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [values, handleChange, handleBlur, handleSubmit, errors] =
     useFormValidation(
       {
         company_name: '',
         user_category: '',
+        user_country: '',
         name: '',
         surname: '',
         position: '',
@@ -26,6 +26,14 @@ const App = () => {
       validateInputs,
       setDisabled
     );
+  console.log(userCategory);
+
+  useEffect(() => {
+    axios.get('api/v1/public/user_category/input_list').then(response => {
+      console.log(response);
+      setUserCategory(response.data.data);
+    });
+  }, []);
 
   return (
     <div>
@@ -50,16 +58,28 @@ const App = () => {
                 onBlur={handleBlur}
                 errorMsg={errors.company_name || ''}
                 fullWidth
-                required
               >
                 Название юридического лица&#42;
               </TextInput>
               <SelectInput
                 id="user_category"
+                selectValue={[values.user_category]}
                 onBlur={handleBlur}
-                options={data}
+                options={userCategory}
+                onChange={handleChange}
+                errorMsg={errors.user_category || ''}
               >
                 Категория&#42;
+              </SelectInput>
+              <SelectInput
+                id="user_country"
+                selectValue={[values.user_country]}
+                onBlur={handleBlur}
+                options={userCategory}
+                onChange={handleChange}
+                errorMsg={errors.user_country || ''}
+              >
+                Страна&#42;
               </SelectInput>
             </FormSection>
             <FormSection title="Представитель юридического лица">

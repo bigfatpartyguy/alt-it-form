@@ -9,6 +9,7 @@ const cx = classNames.bind(styles);
 
 const SelectInput = ({
   id,
+  selectValue,
   onChange,
   onBlur,
   errorMsg,
@@ -18,12 +19,12 @@ const SelectInput = ({
   children,
 }) => {
   const [focused, setFocused] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const selectedOptions = options.filter(option =>
+    selectValue.includes(option.id)
+  );
   const [touched, setTouched] = useState(false);
   const [value, setValue] = useState('');
-
-  const inputRef = useRef();
-  const inputWrapperRef = useRef();
+  console.log(errorMsg);
 
   const handleFocus = () => {
     setFocused(true);
@@ -39,21 +40,26 @@ const SelectInput = ({
     onBlur(evt);
   };
 
-  const addSelectedOptions = options => {
-    console.log('click');
+  const selectOption = optionId => {
+    console.log(id);
+    onChange({target: {name: id, value: optionId}});
+  };
+
+  const deleteOption = optionId => {
     if (!multi) {
-      setSelectedOptions(options);
+      onChange({target: {name: id, value: ''}});
+    } else {
+      onChange({
+        target: {
+          name: id,
+          value: selectedOptions.filter(option => option.id !== optionId),
+        },
+      });
     }
   };
 
-  const deleteOption = id => {
-    setSelectedOptions(prevOptions => {
-      return prevOptions.filter(option => option.id !== id);
-    });
-  };
-
   const clearOptions = () => {
-    setSelectedOptions([]);
+    onChange({target: {name: id, value: ''}});
   };
 
   const inputClass = cx({
@@ -70,7 +76,7 @@ const SelectInput = ({
         className={styles['input__input-field']}
         type="text"
         value={value}
-        placeholder={children}
+        placeholder={selectedOptions.length ? '' : children}
         onChange={handleChange}
         onFocus={handleFocus}
         required
@@ -102,7 +108,7 @@ const SelectInput = ({
       ) : null}
       <ul className={styles['input__select-options']}>
         {options.map(option => (
-          <li key={option.id} onMouseDown={() => addSelectedOptions([option])}>
+          <li key={option.id} onMouseDown={() => selectOption(option.id)}>
             {option.name}
           </li>
         ))}
