@@ -6,7 +6,16 @@ import styles from './TextInput.module.scss';
 
 const cx = classNames.bind(styles);
 
-const TextInput = ({id, type, value, onChange, onBlur, errorMsg, children}) => {
+const TextInput = ({
+  id,
+  type,
+  value,
+  onChange,
+  onBlur,
+  errorMsg,
+  fullWidth,
+  children,
+}) => {
   const [touched, setTouched] = useState(false);
 
   const handleBlur = evt => {
@@ -14,7 +23,11 @@ const TextInput = ({id, type, value, onChange, onBlur, errorMsg, children}) => {
     onBlur(evt);
   };
 
-  const inputClass = cx({input: true, input_invalid: errorMsg});
+  const inputClass = cx({
+    input: true,
+    input_invalid: errorMsg,
+    'full-width': fullWidth,
+  });
   return (
     <div className={inputClass}>
       <input

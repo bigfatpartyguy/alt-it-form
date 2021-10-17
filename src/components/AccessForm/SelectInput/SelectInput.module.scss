@@ -1,0 +1,139 @@
+@import '../../../assets/scss/variables/colors';
+
+.input {
+  width: 310px;
+  min-height: 56px;
+  position: relative;
+  margin-bottom: 25px;
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &__selected-options {
+    position: relative;
+    z-index: 1;
+    width: 80%;
+    padding: 16px 0px 16px 20px;
+  }
+
+  &__clear-selection {
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &__input-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: map-get($colors, 'bg');
+    border: 2px solid map-get($colors, 'border');
+    outline: none;
+    border-radius: 5px;
+    padding: 14px 56px 14px 20px;
+    font-weight: normal;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    cursor: pointer;
+
+    &::placeholder {
+      color: map-get($colors, 'gray-color');
+    }
+
+    &:focus {
+      border-color: map-get($colors, 'primary-60');
+
+      &::placeholder {
+        color: map-get($colors, 'muted');
+      }
+    }
+  }
+
+  &.focused .input__select-options {
+    height: 272px;
+  }
+
+  &__select-options {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    transform: translateY(100%);
+    overflow-y: auto;
+    list-style: none;
+    background-color: map-get($colors, 'white-color');
+    box-shadow: 0 10px 25px hsla(0, 0%, 0%, 0.2);
+    border-radius: 5px;
+    padding: 0 25px;
+    height: 0;
+    transition: all 200ms ease;
+    z-index: 1;
+
+    & li {
+      min-height: 33px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: map-get($colors, 'bg-dark');
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    &::-webkit-scrollbar-track {
+      height: calc(100% - 10px);
+      margin: 5px 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: map-get($colors, 'primary');
+      border-radius: 1px;
+    }
+  }
+
+  &__dropdown-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 200ms ease;
+    cursor: pointer;
+  }
+
+  &.focused &__dropdown-icon {
+    transform: translateY(-50%) rotateZ(180deg);
+  }
+
+  &__error-message {
+    font-size: 10px;
+    color: map-get($colors, 'danger');
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  &.input_invalid {
+    .input__input-field {
+      border-color: map-get($colors, 'danger-60');
+    }
+  }
+}

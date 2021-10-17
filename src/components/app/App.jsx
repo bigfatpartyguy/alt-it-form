@@ -3,14 +3,26 @@ import Header from '../Header';
 import AccessForm from '../AccessForm';
 import FormSection from '../AccessForm/FormSection';
 import TextInput from '../AccessForm/TextInput';
+import SelectInput from '../AccessForm/SelectInput';
 import bgUrl from '../../assets/images/bg.png';
 import styles from './App.module.scss';
 import {useFormValidation, validateInputs} from '../../features/validation';
+
+//Hardcoded data for testing purposes
+import data from '../../data';
+
 const App = () => {
   const [disabled, setDisabled] = useState(true);
   const [values, handleChange, handleBlur, handleSubmit, errors] =
     useFormValidation(
-      {name: '', surname: '', position: '', corporate_email: ''},
+      {
+        company_name: '',
+        user_category: '',
+        name: '',
+        surname: '',
+        position: '',
+        corporate_email: '',
+      },
       validateInputs,
       setDisabled
     );
@@ -29,6 +41,27 @@ const App = () => {
             юридических лиц или индивидуальных предпринимателей
           </p>
           <AccessForm>
+            <FormSection title="Юридическое лицо">
+              <TextInput
+                id="company_name"
+                type="text"
+                value={values.company_name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                errorMsg={errors.company_name || ''}
+                fullWidth
+                required
+              >
+                Название юридического лица&#42;
+              </TextInput>
+              <SelectInput
+                id="user_category"
+                onBlur={handleBlur}
+                options={data}
+              >
+                Категория&#42;
+              </SelectInput>
+            </FormSection>
             <FormSection title="Представитель юридического лица">
               <TextInput
                 id="name"
