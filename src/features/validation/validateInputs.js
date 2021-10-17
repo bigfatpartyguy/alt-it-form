@@ -6,6 +6,9 @@ const validateInputs = values => {
   if (!values.user_category) {
     errors.user_category = 'Обязательное поле';
   }
+  if (!values.user_country) {
+    errors.user_country = 'Обязательное поле';
+  }
   if (Object.prototype.hasOwnProperty.call(values, 'name') && !values.name) {
     errors.name = 'Обязательное поле';
   }

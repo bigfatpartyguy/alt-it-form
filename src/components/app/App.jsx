@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import {
+  getUserCategory,
+  getUserCountry,
+  getLang,
+  getIndustry,
+} from '../../features/requests/loadData';
+import {useFormValidation, validateInputs} from '../../features/validation';
 import Header from '../Header';
 import AccessForm from '../AccessForm';
 import FormSection from '../AccessForm/FormSection';
@@ -7,10 +13,11 @@ import TextInput from '../AccessForm/TextInput';
 import SelectInput from '../AccessForm/SelectInput';
 import bgUrl from '../../assets/images/bg.png';
 import styles from './App.module.scss';
-import {useFormValidation, validateInputs} from '../../features/validation';
-
 const App = () => {
   const [userCategory, setUserCategory] = useState([]);
+  const [userCoutry, setUserCountry] = useState([]);
+  const [lang, setLang] = useState([]);
+  const [industry, setIndustry] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [values, handleChange, handleBlur, handleSubmit, errors] =
     useFormValidation(
@@ -26,13 +33,27 @@ const App = () => {
       validateInputs,
       setDisabled
     );
-  console.log(userCategory);
+  console.log(values);
 
   useEffect(() => {
-    axios.get('api/v1/public/user_category/input_list').then(response => {
-      console.log(response);
-      setUserCategory(response.data.data);
-    });
+    Promise.all([getUserCategory, getUserCountry, getLang, getIndustry])
+      .then(responses => {
+        const [catResponse, countryResopnse, langResponse, industryResponse] =
+          responses;
+        return Promise.all([
+          catResponse(),
+          countryResopnse(),
+          langResponse(),
+          industryResponse(),
+        ]);
+      })
+      .then(results => {
+        const [category, country, lang, industry] = results;
+        setUserCategory(category.data.data);
+        setUserCountry(country.data.data);
+        setLang(lang.data.data);
+        setIndustry(industry.data.data);
+      });
   }, []);
 
   return (
@@ -75,7 +96,7 @@ const App = () => {
                 id="user_country"
                 selectValue={[values.user_country]}
                 onBlur={handleBlur}
-                options={userCategory}
+                options={lang}
                 onChange={handleChange}
                 errorMsg={errors.user_country || ''}
               >
