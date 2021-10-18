@@ -95,6 +95,12 @@ const SelectInput = ({
     'full-width': fullWidth,
     focused: focused,
   });
+
+  const selectOptionsClass = cx({
+    'input__select-options': true,
+    'multi-select': multi,
+  });
+
   return (
     <div className={inputClass} onBlur={handleBlur}>
       <input
@@ -134,8 +140,8 @@ const SelectInput = ({
           </div>
         </>
       ) : null}
-      <ul className={styles['input__select-options']}>
-        <>
+      <div className={selectOptionsClass}>
+        <ul>
           {options.map(option => (
             <li key={option.id} onMouseDown={() => selectOption(option.id)}>
               {multi ? (
@@ -150,17 +156,17 @@ const SelectInput = ({
               {option.name}
             </li>
           ))}
-          {multi ? (
-            <button
-              type="button"
-              className={styles['input__select-options__accept-btn']}
-              onMouseDown={addSelectedOptions}
-            >
-              Применить
-            </button>
-          ) : null}
-        </>
-      </ul>
+        </ul>
+        {multi ? (
+          <button
+            type="button"
+            className={styles['input__select-options__accept-btn']}
+            onMouseDown={addSelectedOptions}
+          >
+            Применить
+          </button>
+        ) : null}
+      </div>
     </div>
   );
 };

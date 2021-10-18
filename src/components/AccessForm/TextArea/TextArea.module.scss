@@ -1,0 +1,44 @@
+@import '../../../assets/scss/variables/colors';
+
+.textarea {
+  resize: none;
+  width: 100%;
+  max-width: 100%;
+  height: 105px;
+  max-height: 105px;
+  background-color: map-get($colors, 'bg');
+  border: 2px solid map-get($colors, 'border');
+  outline: none;
+  border-radius: 5px;
+  padding: 14px 20px;
+  font-weight: normal;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+
+  &::placeholder {
+    color: map-get($colors, 'gray-color');
+  }
+
+  &:focus {
+    border-color: map-get($colors, 'primary-60');
+
+    &::placeholder {
+      color: map-get($colors, 'muted');
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    height: calc(100% - 10px);
+    margin: 5px 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: map-get($colors, 'primary');
+    border-radius: 1px;
+  }
+}

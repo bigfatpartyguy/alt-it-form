@@ -11,6 +11,7 @@ import AccessForm from '../AccessForm';
 import FormSection from '../AccessForm/FormSection';
 import TextInput from '../AccessForm/TextInput';
 import SelectInput from '../AccessForm/SelectInput';
+import TextArea from '../AccessForm/TextArea/TextArea';
 import bgUrl from '../../assets/images/bg.png';
 import styles from './App.module.scss';
 const App = () => {
@@ -181,6 +182,7 @@ const App = () => {
               >
                 Интересующие отрасли&#42;
               </SelectInput>
+              <TextArea id="message" placeholder="Сообщение" />
             </FormSection>
           </AccessForm>
         </section>

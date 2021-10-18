@@ -70,56 +70,68 @@
     bottom: -1px;
     left: 0;
     transform: translateY(100%);
-    overflow-y: auto;
-    list-style: none;
+    overflow-y: hidden;
     background-color: map-get($colors, 'white-color');
     box-shadow: 0 10px 25px hsla(0, 0%, 0%, 0.2);
     border-radius: 5px;
-    padding: 0 25px;
     height: 0;
     transition: all 200ms ease;
     z-index: 1;
 
+    &.multi-select {
+      & ul {
+        max-height: 182px;
+      }
+    }
+
+    & ul {
+      padding: 10px 25px 0;
+      max-height: 100%;
+      width: 100%;
+      overflow-y: auto;
+      list-style: none;
+
+      & li {
+        min-height: 33px;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: map-get($colors, 'bg-dark');
+        }
+
+        & .option-icon {
+          margin-right: 12px;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: 2px;
+      }
+
+      &::-webkit-scrollbar-track {
+        height: calc(100% - 10px);
+        margin: 5px 0;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: map-get($colors, 'primary');
+        border-radius: 1px;
+      }
+    }
+
     &__accept-btn {
-      position: fixed;
+      margin: 25px;
       height: 40px;
       background-color: map-get($colors, 'primary');
       color: map-get($colors, 'white-color');
       border: none;
       border-radius: 5px;
-      width: 100%;
+      width: calc(100% - 50px);
       font-weight: 600;
       cursor: pointer;
-    }
-
-    & li {
-      min-height: 33px;
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-      cursor: pointer;
-
-      &:hover {
-        background-color: map-get($colors, 'bg-dark');
-      }
-
-      & .option-icon {
-        margin-right: 12px;
-      }
-    }
-
-    &::-webkit-scrollbar {
-      width: 2px;
-    }
-
-    &::-webkit-scrollbar-track {
-      height: calc(100% - 10px);
-      margin: 5px 0;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: map-get($colors, 'primary');
-      border-radius: 1px;
     }
   }
 

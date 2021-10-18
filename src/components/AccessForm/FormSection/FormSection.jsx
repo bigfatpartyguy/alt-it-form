@@ -4,7 +4,7 @@ import styles from './FormSection.module.scss';
 const FormSection = ({title, children}) => {
   return (
     <section className={styles['form-section']}>
-      <p className={styles['form-section__title']}>{title}</p>
+      {title ? <p className={styles['form-section__title']}>{title}</p> : null}
       <div className={styles['form-section__form-elements']}>{children}</div>
     </section>
   );
