@@ -12,6 +12,7 @@ import FormSection from '../AccessForm/FormSection';
 import TextInput from '../AccessForm/TextInput';
 import SelectInput from '../AccessForm/SelectInput';
 import TextArea from '../AccessForm/TextArea/TextArea';
+import CheckInput from '../AccessForm/CheckInput';
 import bgUrl from '../../assets/images/bg.png';
 import styles from './App.module.scss';
 const App = () => {
@@ -33,10 +34,12 @@ const App = () => {
         country: [],
         lang: '',
         industry: [],
+        accept_rules: false,
       },
       validateInputs,
       setDisabled
     );
+  console.log(errors);
 
   useEffect(() => {
     Promise.all([getUserCategory, getUserCountry, getLang, getIndustry])
@@ -183,6 +186,18 @@ const App = () => {
                 Интересующие отрасли&#42;
               </SelectInput>
               <TextArea id="message" placeholder="Сообщение" />
+            </FormSection>
+            <FormSection>
+              <CheckInput
+                id="accept_rules"
+                value={values.accept_rules}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                error={errors.accept_rules}
+              >
+                Подтверждаю, что являюсь уполномоченным представителем
+                указанного юридического лица или индивидуального предпринимателя
+              </CheckInput>
             </FormSection>
           </AccessForm>
         </section>

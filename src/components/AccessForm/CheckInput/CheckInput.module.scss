@@ -1,0 +1,77 @@
+@import '../../../assets/scss/variables/colors';
+
+.check-input {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  &.error {
+    & input {
+      border-color: red;
+    }
+
+    & label {
+      color: red;
+    }
+  }
+  & input {
+    margin-right: 15px;
+    display: inline-block;
+    margin-top: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+    border: 2px solid map-get($colors, 'control');
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      border-color: map-get($colors, 'muted-light');
+    }
+
+    &:focus {
+      border-color: map-get($colors, 'primary-60');
+    }
+
+    &:checked {
+      background-color: map-get($colors, 'primary');
+      border: none;
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 9px;
+        border-radius: 1px;
+        background-color: white;
+        transform: rotateZ(45deg);
+        top: 22%;
+        left: 56%;
+      }
+      &:before {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 6px;
+        border-radius: 1px;
+        background-color: white;
+        transform: rotateZ(-45deg);
+        top: 40%;
+        left: 28%;
+      }
+    }
+  }
+
+  & label {
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: 300;
+  }
+}

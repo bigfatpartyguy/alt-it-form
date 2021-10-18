@@ -51,6 +51,9 @@ const validateInputs = values => {
   if (!values.industry.length) {
     errors.industry = 'Обязательное поле';
   }
+  if (!values.accept_rules) {
+    errors.accept_rules = true;
+  }
   return errors;
 };
 
