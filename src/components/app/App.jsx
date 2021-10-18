@@ -75,7 +75,7 @@ const App = () => {
             Доступ к платформе возможен исключительно для представителей,
             юридических лиц или индивидуальных предпринимателей
           </p>
-          <AccessForm>
+          <AccessForm canSubmit={disabled}>
             <FormSection title="Юридическое лицо">
               <TextInput
                 id="company_name"

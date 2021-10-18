@@ -45,7 +45,9 @@ const SelectInput = ({
       }
       return false;
     });
-    onBlur(evt);
+    if (!selectionHappens) {
+      onBlur(evt);
+    }
   };
 
   const selectOption = optionId => {
@@ -87,6 +89,7 @@ const SelectInput = ({
 
   const clearOptions = () => {
     onChange({target: {name: id, value: ''}});
+    setActiveOptions([]);
   };
 
   const inputClass = cx({
@@ -113,7 +116,6 @@ const SelectInput = ({
         placeholder={selectedOptions.length ? '' : children}
         onChange={handleChange}
         onFocus={handleFocus}
-        required
       />
       {errorMsg ? (
         <div className={styles['input__error-message']}>{errorMsg}</div>

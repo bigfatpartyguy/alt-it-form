@@ -19,4 +19,39 @@
   &__form-elements {
     padding: 0 45px 45px;
   }
+
+  &__form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 45px;
+
+    & p {
+      font-size: 12px;
+      font-weight: normal;
+    }
+
+    .form__submit-btn {
+      width: 240px;
+      height: 55px;
+      flex: 0 0 auto;
+      background-color: map-get($colors, 'primary');
+      border: none;
+      border-radius: 5px;
+      color: map-get($colors, 'white-color');
+      font-weight: 600;
+      font-size: 15px;
+      font-family: inherit;
+      cursor: pointer;
+
+      &:hover {
+        background-color: map-get($colors, 'primary-80');
+      }
+
+      &:disabled {
+        cursor: initial;
+        background-color: map-get($colors, 'control-light');
+      }
+    }
+  }
 }
