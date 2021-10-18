@@ -24,7 +24,6 @@ const validateInputs = values => {
   if (values.surname.length > 50) {
     errors.surname = 'Максимальная длина - 50 символов';
   }
-
   if (
     Object.prototype.hasOwnProperty.call(values, 'position') &&
     !values.position
@@ -42,6 +41,15 @@ const validateInputs = values => {
     !/^[\w.-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/.test(values.corporate_email)
   ) {
     errors.corporate_email = 'Неправильный email';
+  }
+  if (!values.country.length) {
+    errors.country = 'Обязательное поле';
+  }
+  if (!values.lang) {
+    errors.lang = 'Обязательное поле';
+  }
+  if (!values.industry.length) {
+    errors.industry = 'Обязательное поле';
   }
   return errors;
 };

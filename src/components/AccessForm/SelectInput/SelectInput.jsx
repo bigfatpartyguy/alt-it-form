@@ -3,6 +3,8 @@ import classNames from 'classnames/bind';
 import SelectedOption from './SelectedOption';
 import {ReactComponent as TriangleIcon} from '../../../assets/images/triangle.svg';
 import {ReactComponent as ClearSelectIcon} from '../../../assets/images/clear-select.svg';
+import {ReactComponent as CheckboxIcon} from '../../../assets/images/checkbox.svg';
+import {ReactComponent as CheckboxActiveIcon} from '../../../assets/images/checkbox-active.svg';
 import styles from './SelectInput.module.scss';
 
 const cx = classNames.bind(styles);
@@ -22,9 +24,10 @@ const SelectInput = ({
   const selectedOptions = options.filter(option =>
     selectValue.includes(option.id)
   );
-  const [touched, setTouched] = useState(false);
+  const [activeOptions, setActiveOptions] = useState([]);
+  const [selectionHappens, setSelectionHappens] = useState(false);
   const [value, setValue] = useState('');
-  console.log(errorMsg);
+  const inputRef = useRef();
 
   const handleFocus = () => {
     setFocused(true);
@@ -35,24 +38,48 @@ const SelectInput = ({
   };
 
   const handleBlur = evt => {
-    setFocused(false);
-    setTouched(true);
+    setFocused(prev => {
+      if (selectionHappens) {
+        inputRef.current.focus();
+        return prev;
+      }
+      return false;
+    });
     onBlur(evt);
   };
 
   const selectOption = optionId => {
-    console.log(id);
-    onChange({target: {name: id, value: optionId}});
+    if (!multi) {
+      onChange({target: {name: id, value: optionId}});
+    } else {
+      setSelectionHappens(true);
+      setActiveOptions(prev => {
+        if (prev.includes(optionId)) {
+          return prev.filter(id => id !== optionId);
+        }
+        return [...prev, optionId];
+      });
+      setTimeout(() => setSelectionHappens(false), 200);
+    }
+  };
+
+  const addSelectedOptions = () => {
+    onChange({target: {name: id, value: activeOptions}});
   };
 
   const deleteOption = optionId => {
     if (!multi) {
       onChange({target: {name: id, value: ''}});
     } else {
+      setActiveOptions(prev => {
+        return prev.filter(id => id !== optionId);
+      });
       onChange({
         target: {
           name: id,
-          value: selectedOptions.filter(option => option.id !== optionId),
+          value: selectedOptions
+            .filter(option => option.id !== optionId)
+            .map(option => option.id),
         },
       });
     }
@@ -71,6 +98,7 @@ const SelectInput = ({
   return (
     <div className={inputClass} onBlur={handleBlur}>
       <input
+        ref={inputRef}
         id={id}
         name={id}
         className={styles['input__input-field']}
@@ -107,11 +135,31 @@ const SelectInput = ({
         </>
       ) : null}
       <ul className={styles['input__select-options']}>
-        {options.map(option => (
-          <li key={option.id} onMouseDown={() => selectOption(option.id)}>
-            {option.name}
-          </li>
-        ))}
+        <>
+          {options.map(option => (
+            <li key={option.id} onMouseDown={() => selectOption(option.id)}>
+              {multi ? (
+                <span className={styles['option-icon']}>
+                  {activeOptions.includes(option.id) ? (
+                    <CheckboxActiveIcon />
+                  ) : (
+                    <CheckboxIcon />
+                  )}
+                </span>
+              ) : null}
+              {option.name}
+            </li>
+          ))}
+          {multi ? (
+            <button
+              type="button"
+              className={styles['input__select-options__accept-btn']}
+              onMouseDown={addSelectedOptions}
+            >
+              Применить
+            </button>
+          ) : null}
+        </>
       </ul>
     </div>
   );

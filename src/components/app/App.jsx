@@ -15,7 +15,7 @@ import bgUrl from '../../assets/images/bg.png';
 import styles from './App.module.scss';
 const App = () => {
   const [userCategory, setUserCategory] = useState([]);
-  const [userCoutry, setUserCountry] = useState([]);
+  const [userCountry, setUserCountry] = useState([]);
   const [lang, setLang] = useState([]);
   const [industry, setIndustry] = useState([]);
   const [disabled, setDisabled] = useState(true);
@@ -29,11 +29,13 @@ const App = () => {
         surname: '',
         position: '',
         corporate_email: '',
+        country: [],
+        lang: '',
+        industry: [],
       },
       validateInputs,
       setDisabled
     );
-  console.log(values);
 
   useEffect(() => {
     Promise.all([getUserCategory, getUserCountry, getLang, getIndustry])
@@ -96,7 +98,7 @@ const App = () => {
                 id="user_country"
                 selectValue={[values.user_country]}
                 onBlur={handleBlur}
-                options={lang}
+                options={userCountry}
                 onChange={handleChange}
                 errorMsg={errors.user_country || ''}
               >
@@ -145,9 +147,45 @@ const App = () => {
                 Ваш корпоративный email&#42;
               </TextInput>
             </FormSection>
+            <FormSection title="Профессиональные интересы">
+              <SelectInput
+                id="country"
+                selectValue={values.country}
+                onBlur={handleBlur}
+                options={userCountry}
+                onChange={handleChange}
+                errorMsg={errors.country || ''}
+                multi
+              >
+                Целевые рынки&#42;
+              </SelectInput>
+              <SelectInput
+                id="lang"
+                selectValue={[values.lang]}
+                onBlur={handleBlur}
+                options={lang}
+                onChange={handleChange}
+                errorMsg={errors.lang || ''}
+              >
+                Предпочтительный язык&#42;
+              </SelectInput>
+              <SelectInput
+                id="industry"
+                selectValue={values.industry}
+                onBlur={handleBlur}
+                options={industry}
+                onChange={handleChange}
+                errorMsg={errors.industry || ''}
+                multi
+                fullWidth
+              >
+                Интересующие отрасли&#42;
+              </SelectInput>
+            </FormSection>
           </AccessForm>
         </section>
       </main>
+      <footer>FOoter</footer>
     </div>
   );
 };

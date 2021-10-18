@@ -59,43 +59,43 @@ export const userCountry = {
   data: [
     {
       id: 'a8db151d-52a5-4246-ac7d-d33a866896c1',
-      name: 'Azerbaïdjan',
+      name: 'Азербайджан',
       preview_picture:
         '/storage/files/handbook_country/a9d322cb04cb2f63MRT68616e64626f6f6b5f636f756e747279613257148e360.svg',
     },
     {
       id: '5953189d-af51-4cb1-8cdd-b9820c3d9e8f',
-      name: 'Russie',
+      name: 'Россия',
       preview_picture:
         '/storage/files/handbook_country/17f281896cef57acMTR68616e64626f6f6b5f636f756e747279613257206072f.svg',
     },
     {
       id: '055c7184-44a7-4efe-998c-a60890d6ca9b',
-      name: 'Arménie',
+      name: 'Армения',
       preview_picture:
         '/storage/files/handbook_country/27f34abc117637d0TRM68616e64626f6f6b5f636f756e74727961325729b26f9.svg',
     },
     {
       id: 'f9f06f9d-26ae-45b3-b3bf-7476050d78a3',
-      name: 'Ouzbékistan',
+      name: 'Узбекистан',
       preview_picture:
         '/storage/files/handbook_country/6ac1a80e2e5cfc64RTM68616e64626f6f6b5f636f756e7472796132573290876.svg',
     },
     {
       id: '2e58cf50-50e8-480d-b552-aca934aac821',
-      name: 'Kirghizstan',
+      name: 'Кыргызстан',
       preview_picture:
         '/storage/files/handbook_country/12e740b39a14847cTMR68616e64626f6f6b5f636f756e7472796132573b0cbfd.svg',
     },
     {
       id: '2e371fce-5dcb-416e-8861-0e887a39770a',
-      name: 'Kazakhstan',
+      name: 'Казахстан',
       preview_picture:
         '/storage/files/handbook_country/3f6e5dadbd0ba008MRT68616e64626f6f6b5f636f756e747279613257424e6d7.svg',
     },
     {
       id: 'f5c2203a-8019-4d80-ab42-44dca15e9359',
-      name: 'Biélorussie',
+      name: 'Беларусь',
       preview_picture:
         '/storage/files/handbook_country/9856f930a3758eb1MRT68616e64626f6f6b5f636f756e7472796132574bce486.svg',
     },

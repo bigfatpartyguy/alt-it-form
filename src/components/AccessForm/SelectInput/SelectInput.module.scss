@@ -62,10 +62,10 @@
 
   &.focused .input__select-options {
     height: 272px;
-    width: 100%;
   }
 
   &__select-options {
+    width: 100%;
     position: absolute;
     bottom: -1px;
     left: 0;
@@ -80,6 +80,18 @@
     transition: all 200ms ease;
     z-index: 1;
 
+    &__accept-btn {
+      position: fixed;
+      height: 40px;
+      background-color: map-get($colors, 'primary');
+      color: map-get($colors, 'white-color');
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
     & li {
       min-height: 33px;
       display: flex;
@@ -89,6 +101,10 @@
 
       &:hover {
         background-color: map-get($colors, 'bg-dark');
+      }
+
+      & .option-icon {
+        margin-right: 12px;
       }
     }
 
