@@ -76,7 +76,7 @@
     border-radius: 5px;
     height: 0;
     transition: all 200ms ease;
-    z-index: 1;
+    z-index: 10;
 
     &.multi-select {
       & ul {
