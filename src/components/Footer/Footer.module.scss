@@ -1,16 +1,12 @@
 @import '../../assets/scss/variables/colors';
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+.footer {
   height: 70px;
   width: 100%;
   display: flex;
   justify-content: center;
   background-color: map-get($colors, 'white-color');
-  border-bottom: 1px solid map-get($colors, 'border');
+  border-top: 1px solid map-get($colors, 'border');
 
   &__content {
     max-width: 1360px;
@@ -18,14 +14,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
 
-  &__controls {
-    display: flex;
-    align-items: center;
+    &__info {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
 
-    > *:not(:last-child) {
-      margin-right: 20px;
+      & p {
+        color: map-get($colors, 'body');
+        margin-right: 13px;
+      }
+
+      & a {
+        color: map-get($colors, 'primary');
+      }
     }
   }
 }

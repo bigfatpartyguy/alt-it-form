@@ -13,7 +13,6 @@ const CheckInput = ({id, value, onChange, onBlur, error, children}) => {
     onChange({target: {name: id, value: evt.target.checked}});
     onBlur(evt);
   };
-  console.log(error);
   return (
     <div className={inputClass}>
       <input

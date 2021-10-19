@@ -1,14 +1,9 @@
 import React from 'react';
 import styles from './AccessForm.module.scss';
 
-const AccessForm = ({canSubmit, children}) => {
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    console.log('submit');
-  };
-
+const AccessForm = ({canSubmit, onSubmit, children}) => {
   return (
-    <form className={styles['form']} onSubmit={handleSubmit}>
+    <form className={styles['form']} onSubmit={onSubmit}>
       <p className={styles['form-title']}>Заполните контактные данные</p>
       <div className={styles['form__form-elements']}>{children}</div>
       <hr />

@@ -48,6 +48,9 @@ const useFormValidation = (initialState, validationFunc, btnDisablefunc) => {
     }
     const submittedData = {...values};
     onSubmit(submittedData);
+    setValues(initialState);
+    setErrors({});
+    setTouched([]);
   };
 
   return [values, handleChange, handleBlur, handleSubmit, errors];

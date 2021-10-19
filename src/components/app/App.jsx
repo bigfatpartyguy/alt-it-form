@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import {
   getUserCategory,
   getUserCountry,
@@ -13,33 +14,73 @@ import TextInput from '../AccessForm/TextInput';
 import SelectInput from '../AccessForm/SelectInput';
 import TextArea from '../AccessForm/TextArea/TextArea';
 import CheckInput from '../AccessForm/CheckInput';
+import SuccessModal from '../Modals/SuccessModal';
+import ErrorModal from '../Modals/ErrorModal';
+import Footer from '../Footer';
 import bgUrl from '../../assets/images/bg.png';
 import styles from './App.module.scss';
 const App = () => {
+  const initialValues = {
+    company_name: '',
+    user_category: '',
+    user_country: '',
+    name: '',
+    surname: '',
+    position: '',
+    corporate_email: '',
+    country: [],
+    lang: '',
+    industry: [],
+    accept_rules: false,
+  };
   const [userCategory, setUserCategory] = useState([]);
   const [userCountry, setUserCountry] = useState([]);
   const [lang, setLang] = useState([]);
   const [industry, setIndustry] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [values, handleChange, handleBlur, handleSubmit, errors] =
-    useFormValidation(
-      {
-        company_name: '',
-        user_category: '',
-        user_country: '',
-        name: '',
-        surname: '',
-        position: '',
-        corporate_email: '',
-        country: [],
-        lang: '',
-        industry: [],
-        accept_rules: false,
-      },
-      validateInputs,
-      setDisabled
-    );
-  console.log(errors);
+    useFormValidation(initialValues, validateInputs, setDisabled);
+  const [isModalsOpen, setIsModalsOpen] = useState({
+    success: {isOpen: false},
+    error: {isOpen: false, message: ''},
+  });
+
+  const closeModal = () => {
+    setIsModalsOpen({
+      success: {isOpen: false},
+      error: {isOpen: false, message: ''},
+    });
+  };
+
+  const openSuccessModal = () => {
+    setIsModalsOpen({
+      success: {isOpen: true},
+      error: {isOpen: false, message: ''},
+    });
+  };
+
+  const submitForm = evt => {
+    const sendData = data => {
+      axios
+        .post('/api/v1/public/auth/registration_demo', JSON.stringify(data))
+        .then(() => {
+          openSuccessModal();
+        })
+        .catch(error => {
+          if (error.response) {
+            if (error.response.status === 409) {
+              console.log(error.response);
+              const {message} = error.response.data;
+              setIsModalsOpen({
+                success: false,
+                error: {isOpen: true, message: message},
+              });
+            }
+          }
+        });
+    };
+    handleSubmit(evt, sendData);
+  };
 
   useEffect(() => {
     Promise.all([getUserCategory, getUserCountry, getLang, getIndustry])
@@ -75,7 +116,7 @@ const App = () => {
             Доступ к платформе возможен исключительно для представителей,
             юридических лиц или индивидуальных предпринимателей
           </p>
-          <AccessForm canSubmit={disabled}>
+          <AccessForm canSubmit={disabled} onSubmit={submitForm}>
             <FormSection title="Юридическое лицо">
               <TextInput
                 id="company_name"
@@ -200,9 +241,20 @@ const App = () => {
               </CheckInput>
             </FormSection>
           </AccessForm>
+          <SuccessModal
+            isOpen={isModalsOpen.success.isOpen}
+            closeModal={closeModal}
+            label="Успешная отправка запроса"
+          />
+          <ErrorModal
+            isOpen={isModalsOpen.error.isOpen}
+            closeModal={closeModal}
+            label="Ошибка"
+            message={isModalsOpen.error.message}
+          />
         </section>
       </main>
-      <footer>FOoter</footer>
+      <Footer />
     </div>
   );
 };

@@ -299,3 +299,5 @@ export const industry = {
     },
   ],
 };
+
+export const registeredUsers = [];
