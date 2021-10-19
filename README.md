@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-![screenshot](./banner.png)
+![screenshot](./banner.jpg)
 
 # Alt-it form test
 
